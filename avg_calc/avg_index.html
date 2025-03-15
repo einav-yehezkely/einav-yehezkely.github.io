@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Average Calculator</title>
+    <link rel="stylesheet" href="/avg_calc/css/avg_styles.css" />
+    <script src="/avg_calc/js/avg_main.js"></script>
+    <!-- <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    /> -->
+    <!-- <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      crossorigin="anonymous"
+    /> -->
+  </head>
+
+  <header>
+    <!-- <h1 align="center">My Portfolio</h1>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbar"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbar">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" id="home" href="/index.html">Home</a>
+          <a
+            class="nav-item nav-link"
+            id="avgCalc"
+            href="/avg_calc/avg_index.html"
+            >Average Calculator</a
+          >
+          <a
+            class="nav-item nav-link"
+            id="recipes"
+            href="/recipes/recipes_index.html"
+            >Recipes Book</a
+          >
+        </div>
+      </div>
+    </nav> -->
+    <h1>Average Calculator</h1>
+    <button type="button" class="btn btn-primary"><a id="home" href="/index.html">Home</a></button>
+    
+  </header>
+  <body>
+    
+    <div class="container">
+      <p id="display">Avg:</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Course name</th>
+              <th>Credits</th>
+              <th>% Exam</th>
+              <th>Exam Score</th>
+              <th>% Magen</th>
+              <th>Magen Score</th>
+              <th>Final Grade</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            <tr>
+              <td><input type="text" class="name" value="Intro2CS" /></td>
+              <td>
+                <input
+                  type="text"
+                  pattern="\d*"
+                  class="credits"
+                  value="7"
+                  oninput="calculateAvg()"
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  pattern="\d*"
+                  class="exam-percent"
+                  value="70"
+                  oninput="calcMagenPercents(this)"
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  pattern="\d*"
+                  class="exam-score"
+                  value="90"
+                  oninput="calculateFinal(this)"
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  pattern="\d*"
+                  class="magen-percent"
+                  value="30"
+                  oninput="calcExamPercents(this)"
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  pattern="\d*"
+                  class="magen-score"
+                  value="99"
+                  oninput="calculateFinal(this)"
+                />
+              </td>
+              <td><input type="text" class="final-grade" disabled /></td>
+              <td><button id="deleteBtn" onclick="deleteRow(this)">Delete</button></td>
+            </tr>
+            <tr>
+              <td><input type="text" class="name" value="LinAlg1" /></td>
+              <td>
+                <input
+                  type="text"
+                  pattern="\d*"
+                  class="credits"
+                  value="6"
+                  oninput="calculateAvg()"
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  pattern="\d*"
+                  class="exam-percent"
+                  value="90"
+                  oninput="calcMagenPercents(this)"
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  pattern="\d*"
+                  class="exam-score"
+                  value="80"
+                  oninput="calculateFinal(this)"
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  pattern="\d*"
+                  class="magen-percent"
+                  value="10"
+                  oninput="calcExamPercents(this)"
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  pattern="\d*"
+                  class="magen-score"
+                  value="95"
+                  oninput="calculateFinal(this)"
+                />
+              </td>
+              <td><input type="text" class="final-grade" disabled /></td>
+              <td><button id="deleteBtn" onclick="deleteRow(this)">Delete</button></td>
+            </tr></tr>
+            <tr>
+              <td><input type="text" class="name" value="Infi1" /></td>
+              <td>
+                <input
+                  type="text"
+                  pattern="\d*"
+                  class="credits"
+                  value="7"
+                  oninput="calculateAvg()"
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  pattern="\d*"
+                  class="exam-percent"
+                  value="90"
+                  oninput="calcMagenPercents(this)"
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  pattern="\d*"
+                  class="exam-score"
+                  value="70"
+                  oninput="calculateFinal(this)"
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  pattern="\d*"
+                  class="magen-percent"
+                  value="10"
+                  oninput="calcExamPercents(this)"
+                />
+              </td>
+              <td>
+                <input  
+                  type="text"
+                  pattern="\d*"
+                  class="magen-score"
+                  value="90"
+                  oninput="calculateFinal(this)"
+                />
+              </td>
+              <td><input type="text" class="final-grade" disabled /></td>
+              <td><button id="deleteBtn" onclick="deleteRow(this)">Delete</button></td>
+            </tr>
+          </tbody>
+        </table>
+      <button id="addRowBtn" onclick="addRow()">Add Row</button>
+      <script>
+        initialFinalGrade();
+        calculateAvg();
+      </script>
+    </div>
+  </body>
+  <footer>
+    <a href="https://github.com/einav-yehezkely" target="_blank"><p>@einavye</p></a>
+  </footer>
+</html>
