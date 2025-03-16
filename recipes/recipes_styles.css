@@ -1,5 +1,6 @@
 body{
     direction: rtl;
+    padding-bottom: 7vh;
 }
 .hover-effect {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -13,3 +14,4 @@ body{
 .hover-effect:hover img {
     transform: scale(1.05);
 }
+

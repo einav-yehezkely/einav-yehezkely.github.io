@@ -29,9 +29,6 @@ function renderRecipe(recipe) {
     
     container.innerHTML = `
         <div class="row">
-                <div class="col-md-4 d-flex justify-content-center align-items-center mb-4">
-                    <img src="${recipe.image}" class="img-fluid" alt="${recipe.title}">
-                </div>
                 <div class="col-md-8">
                     <div class="card shadow-lg">
                         <div class="card-body">
@@ -48,6 +45,9 @@ function renderRecipe(recipe) {
                             </ul>
                         </div>
                     </div>
+                </div>
+                <div class="col-md-4 d-flex justify-content-center align-items-center mb-4">
+                    <img src="${recipe.image}" class="img-fluid rounded" alt="${recipe.title}">
                 </div>
             </div>
     `;
