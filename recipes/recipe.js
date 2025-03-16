@@ -28,30 +28,45 @@ function renderRecipe(recipe) {
     const container = document.getElementById("recipe-container");
     
     container.innerHTML = `
-        <div class="row">
-                <div class="col-md-8">
-                    <div class="card shadow-lg">
-                        <div class="card-body">
-                            <h1 class="card-title text-center">${recipe.title}</h1>
-                            <hr>
-                            <h4>מצרכים:</h4>
-                            <ul class="list-group list-group-flush">
-                                ${recipe.ingredients.map(ingredient => `<li class="list-group-item">${ingredient}</li>`).join('')}
-                            </ul>
-                            <hr>
-                            <h4>הוראות הכנה:</h4>
-                            <ul class="list-group list-group-flush">
-                                ${recipe.instructions.map(instruction => `<li class="list-group-item">${instruction}</li>`).join('')}
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 d-flex justify-content-center align-items-center mb-4">
-                    <img src="${recipe.image}" class="img-fluid rounded" alt="${recipe.title}">
+        <div class="row ${recipe.image ? '' : 'justify-content-center'}">
+        <div class="${recipe.image ? 'col-md-8' : 'col-md-8 mx-auto'}">
+            <div class="card shadow-lg">
+                <div class="card-body">
+                    <h1 class="card-title text-center">${recipe.title}</h1>
+                    <hr>
+                    <h4>מצרכים</h4>
+                    <ul class="list-group list-group-flush">
+                        ${recipe.ingredients.map(ingredient => `<li class="list-group-item">${ingredient}</li>`).join('')}
+                    </ul>
+                    ${recipe.ingredients1 ? `
+                        <h6>${recipe.ingredients1[0]}</h6>
+                        <ul class="list-group list-group-flush">
+                            ${recipe.ingredients1.slice(1).map(ingredient => `<li class="list-group-item">${ingredient}</li>`).join('')}
+                        </ul>
+                    ` : ''}
+                    <hr>
+                    <h4>הוראות הכנה</h4>
+                    <ul class="list-group list-group-flush">
+                        ${recipe.instructions.map(instruction => `<li class="list-group-item">${instruction}</li>`).join('')}
+                    </ul>
+                    ${recipe.notes ? `
+                    <hr>
+                    <h5>הערות</h5>
+                    <p>${recipe.notes}</p>
+                    ` : ''}
                 </div>
             </div>
+        </div>
+    ${recipe.image ? `
+    <div class="col-md-4 d-flex justify-content-center align-items-center mt-md-0 mt-3">
+        <img src="${recipe.image}" class="img-fluid rounded" alt="${recipe.title}">
+    </div>
+    ` : ''}
+</div>
+
     `;
 }
 
 document.addEventListener("DOMContentLoaded", fetchRecipes);
 
+// סה\"כ

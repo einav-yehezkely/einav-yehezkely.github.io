@@ -35,12 +35,15 @@ function renderRecipes() {
             <div class="col">
                 <a href="recipe.html?id=${recipe.id}" class="text-decoration-none text-dark">
                     <div class="card h-100 shadow hover-effect">
-                    <div class="overflow-hidden" style="height: 200px;"> 
-                        <img src="${recipe.image}" class="card-img-top w-100" style="height: 100%; object-fit: cover; transition: transform 0.3s ease;" alt="${recipe.title}">
-                    </div>
-                    <div class="card-body d-flex flex-column justify-content-between">
-                        <h5 class="card-title">${recipe.title}</h5>
-                    </div>
+                        <div class="overflow-hidden" style="height: 200px; background-color: white;">
+                            ${recipe.image ? 
+                                `<img src="${recipe.image}" class="card-img-top w-100" style="height: 100%; object-fit: cover; transition: transform 0.3s ease;" alt="${recipe.title}">` 
+                                : ''
+                            }
+                        </div>
+                        <div class="card-body d-flex flex-column justify-content-between">
+                            <h5 class="card-title">${recipe.title}</h5>
+                        </div>
                     </div>
                 </a>
             </div>
