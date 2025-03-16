@@ -28,13 +28,12 @@ function renderRecipe(recipe) {
     const container = document.getElementById("recipe-container");
     
     container.innerHTML = `
-        <div class="col-md-8">
-            <div class="card shadow-lg">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        <img src="${recipe.image}" class="img-fluid rounded-start" alt="${recipe.title}">
-                    </div>
-                    <div class="col-md-8">
+        <div class="row">
+                <div class="col-md-4 d-flex justify-content-center align-items-center mb-4">
+                    <img src="${recipe.image}" class="img-fluid" alt="${recipe.title}">
+                </div>
+                <div class="col-md-8">
+                    <div class="card shadow-lg">
                         <div class="card-body">
                             <h1 class="card-title text-center">${recipe.title}</h1>
                             <hr>
@@ -44,12 +43,13 @@ function renderRecipe(recipe) {
                             </ul>
                             <hr>
                             <h4>הוראות הכנה:</h4>
-                            <p class="card-text">${recipe.instructions}</p>
+                            <ul class="list-group list-group-flush">
+                                ${recipe.instructions.map(instruction => `<li class="list-group-item">${instruction}</li>`).join('')}
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
     `;
 }
 
