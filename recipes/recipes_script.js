@@ -4,8 +4,16 @@ let searchTerm = "";
 
 async function fetchRecipes() {
     try {
-        const response = await fetch("recipes.json");
-        allRecipes = await response.json();
+        const response = await fetch("recipes.xlsx"); 
+        const arrayBuffer = await response.arrayBuffer(); 
+        const workbook = XLSX.read(arrayBuffer, { type: "array" });
+        const sheetName = workbook.SheetNames[0];
+        const sheet = workbook.Sheets[sheetName];
+
+        allRecipes = XLSX.utils.sheet_to_json(sheet).map(recipe => ({
+            ...recipe,
+            category: recipe.category ? recipe.category.split("|").map(cat => cat.trim()) : []
+        }));
 
         const urlParams = new URLSearchParams(window.location.search);
         currentCategory = urlParams.get("category") || "all";
@@ -22,7 +30,7 @@ function renderRecipes() {
 
     let recipesToRender = currentCategory === "all" 
         ? allRecipes 
-        : allRecipes.filter(recipe => recipe.category === currentCategory);
+        : allRecipes.filter(recipe => recipe.category.includes(currentCategory));
 
     if (searchTerm) {
         recipesToRender = recipesToRender.filter(recipe => 
