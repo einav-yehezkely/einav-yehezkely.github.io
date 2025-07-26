@@ -14,10 +14,36 @@ var velocityY = 0;
 var foodX = 0;
 var foodY = 0;
 
+var randomMode = false;
+var reverseMode = false;
+
 window.onload = function() {
     board = document.getElementById("board");
     board.width = cols * blockSize;
     board.height = rows * blockSize;
+
+    document.getElementById("randomMode").addEventListener("click", function() {
+        randomMode = !randomMode;
+        console.log("Random Mode: " + randomMode);
+        if(randomMode == true){
+            this.classList.toggle("active");
+        }
+        else{
+            this.classList.remove("active");
+        }
+        
+    });
+    document.getElementById("reverseMode").addEventListener("click", function() {
+        reverseMode = !reverseMode;
+        console.log("Reverse Mode: " + reverseMode);
+        if(reverseMode == true){
+            this.classList.toggle("active");
+        }
+        else{
+            this.classList.remove("active");
+        }
+    });
+
 
     context = board.getContext("2d");
     placeFood();
@@ -46,7 +72,7 @@ function update(){
         snakeBody[0] = {x: snakeX, y: snakeY};
     }
 
-    context.fillStyle = "green";
+    context.fillStyle = "#00ffcc";
     snakeX += velocityX;
     snakeY += velocityY;
     context.fillRect(snakeX, snakeY, blockSize, blockSize);
@@ -65,18 +91,18 @@ function placeFood(){
 function changeDirection(event) {
     if(event.code == 'ArrowUp' && velocityY != 1 * blockSize) {
         velocityX = 0;
-        velocityY = -1 * blockSize;
+        velocityY = reverseMode ? 1 * blockSize : -1 * blockSize;
     }
     else if(event.code == 'ArrowDown' && velocityY != -1 * blockSize) {
         velocityX = 0;
-        velocityY = 1 * blockSize;
+        velocityY = reverseMode ? -1 * blockSize : 1 * blockSize;
     }
     else if(event.code == 'ArrowLeft' && velocityX != 1 * blockSize) {
-        velocityX = -1 * blockSize;
+        velocityX = reverseMode ? 1 * blockSize : -1 * blockSize;
         velocityY = 0;
     }
     else if(event.code == 'ArrowRight' && velocityX != -1 * blockSize) {
-        velocityX = 1 * blockSize;
+        velocityX = reverseMode ? -1 * blockSize : 1 * blockSize;
         velocityY = 0;
     }
 }
@@ -87,18 +113,47 @@ function eat(){
 }
 
 function collisions() {
-    if(snakeX < 0){
-            snakeX = (cols - 1) * blockSize;
+    if(randomMode) {
+        if(snakeX < 0 || snakeX >= cols * blockSize || snakeY < 0 || snakeY >= rows * blockSize) {
+            const walls = ["top", "bottom", "left", "right"];
+            const newWall = walls[Math.floor(Math.random() * 4)];
+
+            switch (newWall) {
+                case "top":
+                    snakeX = Math.floor(Math.random() * cols) * blockSize;
+                    snakeY = 0;
+                    break;
+                case "bottom":
+                    snakeX = Math.floor(Math.random() * cols) * blockSize;
+                    snakeY = (rows - 1) * blockSize;
+                    break;
+                case "left":
+                    snakeX = 0;
+                    snakeY = Math.floor(Math.random() * rows) * blockSize;
+                    break;
+                case "right":
+                    snakeX = (cols - 1) * blockSize;
+                    snakeY = Math.floor(Math.random() * rows) * blockSize;
+                    break;
+            }
+        }
+        
     }
-    if(snakeX >= cols * blockSize) {
-        snakeX = 0;
+    else{
+        if(snakeX < 0){
+                snakeX = (cols - 1) * blockSize;
+        }
+        if(snakeX >= cols * blockSize) {
+            snakeX = 0;
+        }
+        if(snakeY < 0) {
+            snakeY = (rows - 1) * blockSize;
+        }
+        if(snakeY >= rows * blockSize) {
+            snakeY = 0;
+        }
     }
-    if(snakeY < 0) {
-        snakeY = (rows - 1) * blockSize;
-    }
-    if(snakeY >= rows * blockSize) {
-        snakeY = 0;
-    }
+    
 }
 
 

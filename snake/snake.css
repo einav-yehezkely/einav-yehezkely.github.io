@@ -1,5 +1,55 @@
 body{
     font-family: 'Courier New', Courier, monospace;
     text-align: center;
+    background: linear-gradient(145deg, #0f0f1a, #1a1a2e);
+    color: #00ffcc;
+    margin: 0;
+    padding: 20px;
+
+}
+#button-bar {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-family: monospace;
+  background-color: #1e1e2f;
+  color: #00ffcc;
+  border: 2px solid #00ffcc;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 10px;
 }
 
+button:hover {
+  background-color: #00ffcc;
+  color: #1e1e2f;
+  transform: scale(1.05);
+}
+
+button.active {
+  background-color: #00ffcc;
+  color: #1e1e2f;
+  border-color: #1e1e2f;
+}
+
+#game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+canvas {
+  display: block;
+  margin: 0 auto;
+  border: 2px solid #00ffcc;
+  border-radius: 10px;   
+  box-shadow: 0 0 10px #00ffcc55; 
+  background-color: #1a1a2e; 
+}
