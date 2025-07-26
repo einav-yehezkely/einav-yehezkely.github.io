@@ -105,3 +105,22 @@ a{
 a:visited{
     color: #292b2c;
 }
+
+#homeButton {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: #5bc0de;
+  color: white;
+  padding: 7px 14px;
+  border-radius: 5px;
+  font-family: Comfortaa, Helvetica, sans-serif;
+  font-size: 16px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  z-index: 1000;
+}
+
+#homeButton:hover {
+  background-color: #31b0d5;
+}

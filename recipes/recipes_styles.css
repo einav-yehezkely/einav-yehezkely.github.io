@@ -14,3 +14,8 @@ body{
 .hover-effect:hover img {
     transform: scale(1.05);
 }
+
+#firstHeader {
+    color: aliceblue;
+    font-family: 'calibri', sans-serif;
+}

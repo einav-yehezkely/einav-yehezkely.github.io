@@ -53,3 +53,27 @@ canvas {
   box-shadow: 0 0 10px #00ffcc55; 
   background-color: #1a1a2e; 
 }
+
+#home-button {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  text-decoration: none;
+  padding: 8px 16px;
+  font-size: 16px;
+  font-family: monospace;
+  background-color: #1e1e2f;
+  color: #00ffcc;
+  border: 2px solid #00ffcc;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  position: fixed;
+
+}
+
+#home-button:hover {
+  background-color: #00ffcc;
+  color: #1e1e2f;
+  transform: scale(1.05);
+}
